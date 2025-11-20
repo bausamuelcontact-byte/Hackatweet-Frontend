@@ -8,7 +8,7 @@ export const singinSlice = createSlice({
   name: "singin",
   initialState,
   reducers: {
-    isVisibleSingin: (state, action) => {
+    isVisibleSingin: (state) => {
       state.value = !state.value;
     },
   },
