@@ -1,28 +1,15 @@
 import styles from "../styles/Login.module.css";
 import { useState } from "react";
-import ReactModal from "react-modal";
+import { useDispatch } from "react-redux";
+import { isVisible } from "../reducers/login";
+import { isVisibleSingin } from "../reducers/singin";
+import Singup from "./Singup";
+import Singin from "./Singin";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstname] = useState("");
   const [visible, setVisible] = useState(false);
 
-  function singup() {
-    fetch("http://localhost:3000/user/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: { username: username, firstname: firstname, password: password },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("newClient ok", data);
-      });
-  }
-
-  function signupModal() {
-    setVisible(true);
-  }
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -35,49 +22,23 @@ function Login() {
             <button
               className={styles.singup}
               onClick={() => {
-                console.log("hello"), signupModal();
+                dispatch(isVisible());
               }}
             >
               Sign up
             </button>
             <p className={styles.account}>Already have an account ?</p>
-            <button className={styles.singin}>Sign in</button>
+            <button
+              className={styles.singin}
+              onClick={() => {
+                dispatch(isVisibleSingin());
+              }}
+            >
+              Sign in
+            </button>
           </div>
-          <ReactModal
-            isOpen={visible}
-            style={{
-              overlay: {
-                top: 200,
-                bottom: 200,
-                right: 200,
-                left: 200,
-                backgroundColor: "rgb(21, 29, 39)",
-              },
-              content: {
-                backgroundColor: "rgb(21, 29, 39)",
-                color: "rgba(255, 255, 255, 1)",
-              },
-            }}
-          >
-            <p>Username</p>
-            <input
-              type="text"
-              placeholder="Username"
-              className={styles.input}
-            ></input>
-            <p>Firstname</p>
-            <input
-              type="text"
-              placeholder="Firstname"
-              className={styles.input}
-            ></input>
-            <p>Password</p>
-            <input
-              type="text"
-              placeholder="Password"
-              className={styles.input}
-            ></input>
-          </ReactModal>
+          <Singup />
+          <Singin />
         </div>
       </main>
       <script
