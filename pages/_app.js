@@ -1,13 +1,24 @@
 import "../styles/globals.css";
 import Head from "next/head";
 
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import login from "../reducers/login";
+import singin from "../reducers/singin";
+
+const store = configureStore({
+  reducer: { login, singin },
+});
+
 function App({ Component, pageProps }) {
   return (
     <>
-      <Head>
-        <title>Hackatweet</title>
-      </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Head>
+          <title>Hackatweet</title>
+        </Head>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }
