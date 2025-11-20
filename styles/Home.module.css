@@ -1,22 +1,67 @@
-.main {
+.mainContent {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  min-height: 100vh;
+  padding: 0;
+  margin:0;
+  background-color: #151d27;
+  color: white;
+}
+
+.leftPartContainer {
+ grid-row-start: 1;
+ grid-row-end: 7;
+ grid-column-start: 1;
+ grid-column-end: 3;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ border-right: solid 1px;
+ border-right-color: rgb(194, 189, 189);
+}
+
+.logoStyle {
+  margin-top: 10px;
+  margin-left: 30px
+}
+
+.userLeft {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+  align-items: left;
+  margin-bottom: 50px;
+  margin-left: 30px
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+.userLeftButton {
+  width: 40%;
+  color : rgb(194, 189, 189);
+  background-color: #151d27;
+  border-color: rgb(194, 189, 189);
+  border-radius: 8px;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.tweetContainer {
+  grid-row-start: 1;
+ grid-row-end: 3;
+ grid-column-start: 3;
+ grid-column-end: 8;
+ background-color: red;
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.lastTweetsContainer {
+  grid-row-start: 3;
+ grid-row-end: 7;
+ grid-column-start: 3;
+ grid-column-end: 8;
+ background-color: green;
+}
+
+.trendsContainer {
+  grid-row-start: 1;
+ grid-row-end: 7;
+ grid-column-start: 8;
+ grid-column-end: 11;
+ background-color: yellow;
 }
