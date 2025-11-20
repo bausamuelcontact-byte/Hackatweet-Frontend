@@ -1,0 +1,60 @@
+.main {
+  background-image: url("/banksy3.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
+
+.login {
+  grid-row-start: 1;
+  grid-row-end: 21;
+  grid-column-start: 11;
+  grid-column-end: 21;
+  background-color: #151d27;
+  color: white;
+}
+
+.logo {
+  height: 150px;
+}
+
+.text {
+  margin-left: 30px;
+}
+
+.title {
+  font-size: 9vh;
+}
+
+.littletitle {
+  font-size: 6vh;
+}
+
+.account {
+  font-size: 1.7vh;
+}
+
+.singup {
+  margin-top: 7%;
+  color: white;
+  background-color: dodgerblue;
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 3em;
+  width: 15em;
+  font-weight: bold;
+  cursor: crosshair;
+}
+
+.singin {
+  color: white;
+  background-color: #151d27;
+  border: 1px solid white;
+  border-radius: 30px;
+  height: 3em;
+  width: 15em;
+  font-weight: bold;
+  cursor: crosshair;
+}
