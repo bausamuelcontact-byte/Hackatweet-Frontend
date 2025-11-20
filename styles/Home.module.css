@@ -47,7 +47,10 @@
  grid-row-end: 3;
  grid-column-start: 3;
  grid-column-end: 8;
- background-color: red;
+ border-right: solid 1px;
+ border-right-color: rgb(194, 189, 189);
+ border-bottom: solid 1px;
+ border-bottom-color: rgb(194, 189, 189);
 }
 
 .lastTweetsContainer {
@@ -55,7 +58,8 @@
  grid-row-end: 7;
  grid-column-start: 3;
  grid-column-end: 8;
- background-color: green;
+ border-right: solid 1px;
+ border-right-color: rgb(194, 189, 189);
 }
 
 .trendsContainer {
@@ -63,5 +67,4 @@
  grid-row-end: 7;
  grid-column-start: 8;
  grid-column-end: 11;
- background-color: yellow;
 }
