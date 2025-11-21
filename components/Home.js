@@ -4,24 +4,38 @@ import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { logout } from "../reducers/user";
 import { useDispatch } from "react-redux";
+import { setAllTrends } from "../reducers/trends";
 
 function Home() {
-  const [tweetDisplay, setTweetDisplay] = useState([]);
-  const router = useRouter();
   const dispatch = useDispatch();
+  const [tweetDisplay, setTweetDisplay] = useState([]);
+
+  const extractHashtags = (text) => {
+    const regex = /#[a-zA-Z0-9_]+/g;
+    return text.match(regex) || [];
+  };
 
   useEffect(() => {
     fetch("http://localhost:3000/tweets")
       .then((response) => response.json())
       .then((data) => {
         setTweetDisplay(data);
-      });
-  }, []);
 
-  console.log(tweetDisplay);
+        const allTags = [];
+        for (let i = 0; i < data.length; i++) {
+          const tweet = data[i];
+          const tags = extractHashtags(tweet.text);
+          for (let tag of tags) {
+            allTags.push(tag);
+          }
+        }
+        dispatch(setAllTrends(allTags));
+      })
+      .catch((err) => {
+        console.error("fetch tweets error", err);
+      });
+  }, [dispatch]);
 
   const displayTweets = tweetDisplay.map((data, i) => {
     return (
@@ -33,7 +47,6 @@ function Home() {
     dispatch(logout());
     router.push("/Login");
   }
-
   return (
     <div className={styles.mainContent}>
       <div className={styles.leftPartContainer}>
@@ -55,8 +68,9 @@ function Home() {
       <div className={styles.tweetContainer}>
         <Tweet />
       </div>
-      <div className={styles.lastTweetsContainer}>{displayTweets}</div>
-      <div className={styles.trendsContainer}></div>
+      <div className={styles.trendsContainer}>
+        <Trends />
+      </div>
     </div>
   );
 }
