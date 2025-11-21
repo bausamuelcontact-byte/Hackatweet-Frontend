@@ -10,11 +10,10 @@ function LastTweets(props) {
     (new Date().getTime() - new Date(props.date).getTime()) / 3600000
   );
 
-<<<<<<< HEAD
   function deleteTweets() {
     if (props.token === user.token) {
       fetch(`http://localhost:3000/users/delete/${props.id}`, {
-        methode: "DELETE",
+        method: "DELETE",
       }).then((data) => {
         console.log("suppr", data);
       });
@@ -23,19 +22,17 @@ function LastTweets(props) {
     }
   }
 
-  let heart = <span onClick={() => setLike(like + 1)}>🤍</span>;
+  let heart = <span onClick={() => { like <1 && setLike(like + 1)}}>:white_heart:</span>;
+
   let poubelle = (
     <span
       onClick={() => {
         deleteTweets();
       }}
     >
-      🗑️
+      :wastebasket:
     </span>
   );
-=======
-  let heart = <span onClick={() => {like <1 && setLike(like + 1)}}>🤍</span>;
->>>>>>> 78bd40d15e0dcd5937ee4f10238362962e412a3a
 
   return (
     <div className={styles.tweetContainer}>
@@ -55,3 +52,4 @@ function LastTweets(props) {
 }
 
 export default LastTweets;
+
