@@ -6,16 +6,16 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllTrends } from "../reducers/trends";
-<<<<<<< HEAD
 import { tagSearch } from "../reducers/trends";
-=======
->>>>>>> 78bd40d15e0dcd5937ee4f10238362962e412a3a
 import { logout } from "../reducers/user";
 import { useRouter } from "next/router";
 
 function Home() {
   const userInfo = useSelector(state => state.user.value)
-  console.log(userInfo)
+  const [tweetDisplay, setTweetDisplay] = useState([]);
+  const [refresh, setRefresh] = useState(0);
+  
+  const refresher = () => (setRefresh(refresh+1))
 
 // récupérer le nom et l'username pour la session en cours pour l'afficher au dessus du bouton logout
   const [userNameDisplay, setUserNameDisplay] = useState('')
@@ -44,6 +44,7 @@ function Home() {
        .then((data) => {
          if (data.result) {
            console.log('Tweet posted mf')
+           setRefresh(refresh+1)
          } else {
            console.log("brrr error");
          }
@@ -51,7 +52,6 @@ function Home() {
    } 
 
   const dispatch = useDispatch();
-  const [tweetDisplay, setTweetDisplay] = useState([]);
   const router = useRouter();
   const tag = useSelector((state) => state.trends.selectedTag);
   
@@ -80,7 +80,7 @@ function Home() {
         console.error("fetch tweets error", err); 
       });
   /*}, [dispatch]);*/
-  }, [tweetDisplay, dispatch]);
+  }, [dispatch, refresh]);
   
  
   let displayTweets = tweetDisplay.map((data, i) => {
@@ -91,8 +91,9 @@ function Home() {
         firstname={data.user.firstname}
         text={data.text}
         date={data.date}
-        id={data.id}
+        id={data._id}
         token={data.user.token}
+        refresher={refresher}
       />
     );
   });
@@ -108,6 +109,7 @@ function Home() {
         firstname={data.user.firstname}
         text={data.text}
         date={data.date}
+        refresher={refresher}
       />
      );
      });

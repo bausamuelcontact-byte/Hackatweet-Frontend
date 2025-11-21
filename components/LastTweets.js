@@ -10,21 +10,22 @@ function LastTweets(props) {
     (new Date().getTime() - new Date(props.date).getTime()) / 3600000
   );
 
-<<<<<<< HEAD
   function deleteTweets() {
     if (props.token === user.token) {
-      fetch(`http://localhost:3000/users/delete/${props.id}`, {
-        methode: "DELETE",
+      fetch(`http://localhost:3000/tweets/delete/${props.id}`, {
+        method: "DELETE",
       }).then((data) => {
         console.log("suppr", data);
+        props.refresher()
       });
     } else {
       console.log("mauvais user");
     }
   }
 
-  let heart = <span onClick={() => setLike(like + 1)}>🤍</span>;
-  let poubelle = (
+  let heart = <span onClick={() => {like === 0 ? setLike(1) : setLike(0)}}>🤍</span>;
+
+    let poubelle = (
     <span
       onClick={() => {
         deleteTweets();
@@ -33,10 +34,12 @@ function LastTweets(props) {
       🗑️
     </span>
   );
-=======
-  let heart = <span onClick={() => {like <1 && setLike(like + 1)}}>🤍</span>;
->>>>>>> 78bd40d15e0dcd5937ee4f10238362962e412a3a
 
+  if (props.token !== user.token) {
+    poubelle = (<></>)
+  }
+    
+  
   return (
     <div className={styles.tweetContainer}>
       <div className={styles.infos}>
