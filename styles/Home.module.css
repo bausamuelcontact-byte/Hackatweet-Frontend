@@ -3,11 +3,12 @@
   height: 100vh;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(10, 1fr);
-  height: 100vh;
+  width: 100%;
   padding: 0;
   margin: 0;
-  background-color: #151d27;
+  background-color: #15202b;
   color: white;
+  font-family: Arial, sans-serif;
 }
 
 .leftPartContainer {
@@ -19,7 +20,7 @@
   flex-direction: column;
   justify-content: space-between;
   border-right: solid 1px;
-  border-right-color: rgb(194, 189, 189);
+  border-right-color: #38444d;
 }
 
 .logoStyle {
@@ -39,7 +40,7 @@
   width: 40%;
   color: rgb(194, 189, 189);
   background-color: #151d27;
-  border-color: rgb(194, 189, 189);
+  border-color: #38444d;
   border-radius: 8px;
 }
 
@@ -49,7 +50,7 @@
   grid-column-start: 3;
   grid-column-end: 8;
   border-bottom: solid 1px;
-  border-bottom-color: rgb(194, 189, 189);
+  border-bottom-color: #38444d;
 }
 
 .lastTweetsContainer {
@@ -58,7 +59,7 @@
   grid-column-start: 3;
   grid-column-end: 8;
   border-right: solid 1px;
-  border-right-color: rgb(194, 189, 189);
+  border-right-color: #38444d;
   overflow-y: scroll;
 }
 
@@ -67,5 +68,6 @@
   grid-row-end: 7;
   grid-column-start: 8;
   grid-column-end: 11;
-  border-left: 1px solid rgb(194, 189, 189);
+  border-left: 1px solid #38444d;
 }
+

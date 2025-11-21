@@ -18,33 +18,50 @@ function LastTweets(props) {
     );
   }, []);
 
+<<<<<<< HEAD
+=======
+  const hoursAgo = Math.floor(
+    (new Date().getTime() - new Date(props.date).getTime()) / 3600000
+  );
+
+>>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
   function deleteTweets() {
     if (props.token === user.token) {
       fetch(`http://localhost:3000/tweets/delete/${props.id}`, {
         method: "DELETE",
       }).then((data) => {
         console.log("suppr", data);
+        props.refresher()
       });
     } else {
       console.log("mauvais user");
     }
   }
 
-  let heart = <span onClick={() => setLike(like + 1)}>🤍</span>;
-  let poubelle = (
+  let heart = <span onClick={() => {like === 0 ? setLike(1) : setLike(0)}}>🤍</span>;
+
+    let poubelle = (
     <span
       onClick={() => {
         deleteTweets();
       }}
     >
-      🗑️
+      :wastebasket:
     </span>
   );
 
+<<<<<<< HEAD
   let letter = props.username.charAt(0);
   if (hoursAgo === undefined) {
     setHoursAgo("tkt");
   }
+=======
+  if (props.token !== user.token) {
+    poubelle = (<></>)
+  }
+    
+  
+>>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
   return (
     <div className={styles.tweetContainer}>
       <div className={styles.infos}>
@@ -65,3 +82,4 @@ function LastTweets(props) {
 }
 
 export default LastTweets;
+
