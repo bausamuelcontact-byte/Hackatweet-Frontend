@@ -12,7 +12,9 @@ function LastTweets(props) {
 
   function deleteTweets() {
     if (props.token === user.token) {
-      fetch(`http://localhost:3000/users/delete/${props.id}`).then((data) => {
+      fetch(`http://localhost:3000/users/delete/${props.id}`, {
+        methode: "DELETE",
+      }).then((data) => {
         console.log("suppr", data);
       });
     } else {
