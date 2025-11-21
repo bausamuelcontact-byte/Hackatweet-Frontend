@@ -14,16 +14,11 @@ import Stack from "@mui/material/Stack";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 
 function Home() {
-<<<<<<< HEAD
   const userInfo = useSelector((state) => state.user.value);
-  console.log(userInfo);
-=======
-  const userInfo = useSelector(state => state.user.value)
   const [tweetDisplay, setTweetDisplay] = useState([]);
   const [refresh, setRefresh] = useState(0);
-  
-  const refresher = () => (setRefresh(refresh+1))
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
+
+  const refresher = () => setRefresh(refresh + 1);
 
   // récupérer le nom et l'username pour la session en cours pour l'afficher au dessus du bouton logout
   const [userNameDisplay, setUserNameDisplay] = useState("");
@@ -41,7 +36,6 @@ function Home() {
 
   // fonction passée en props à <Tweets /> pour poster un tweet depuis le component components/Tweet.js grâce à la barre d'input
   function postTweet(textInput) {
-<<<<<<< HEAD
     fetch("http://localhost:3000/tweets/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,31 +48,12 @@ function Home() {
       .then((data) => {
         if (data.result) {
           console.log("Tweet posted mf");
+          setRefresh(refresh + 1);
         } else {
           console.log("brrr error");
         }
       });
   }
-=======
-     fetch("http://localhost:3000/tweets/create", {
-       method: "POST",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({
-         username: userInfo.username,
-         text:textInput
-       }),
-     })
-       .then((response) => response.json())
-       .then((data) => {
-         if (data.result) {
-           console.log('Tweet posted mf')
-           setRefresh(refresh+1)
-         } else {
-           console.log("brrr error");
-         }
-       });
-   } 
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -108,15 +83,9 @@ function Home() {
       .catch((err) => {
         console.error("fetch tweets error", err);
       });
-<<<<<<< HEAD
-  }, [dispatch]);
-
-=======
-  /*}, [dispatch]);*/
+    /*}, [dispatch]);*/
   }, [dispatch, refresh]);
-  
- 
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
+
   let displayTweets = tweetDisplay.map((data, i) => {
     return (
       <LastTweets
@@ -138,7 +107,6 @@ function Home() {
       tweet.text.includes(tag)
     );
     displayTweets = selectedTweets.map((data, i) => {
-<<<<<<< HEAD
       return (
         <LastTweets
           key={i}
@@ -146,35 +114,19 @@ function Home() {
           firstname={data.user.firstname}
           text={data.text}
           date={data.date}
+          refresher={refresher}
         />
       );
     });
   }
-=======
-    return (
-      <LastTweets
-        key={i}
-        username={data.user.username}
-        firstname={data.user.firstname}
-        text={data.text}
-        date={data.date}
-        refresher={refresher}
-      />
-     );
-     });
-   }
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
 
   function logoutBtn() {
     dispatch(logout());
     router.push("/Login");
   }
 
-<<<<<<< HEAD
   let letter = userInfo.username.charAt(0);
 
-=======
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
   return (
     <div className={styles.mainContent}>
       <div className={styles.leftPartContainer}>
@@ -182,12 +134,9 @@ function Home() {
           <Image src="/logo_trsp.png" width={120} height={120} priority />
         </div>
         <div className={styles.userLeft}>
-<<<<<<< HEAD
           <Stack direction="row" spacing={2}>
             <Avatar sx={{ bgcolor: deepOrange[500] }}>{letter}</Avatar>
           </Stack>
-=======
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
           <h3>
             @{userNameDisplay} {userFirstNameDisplay}
           </h3>
@@ -213,5 +162,3 @@ function Home() {
 }
 
 export default Home;
-
-

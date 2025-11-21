@@ -27,48 +27,43 @@ function Tweet(props) {
     setTagValue(value);
     if (value === "") {
       dispatch(tagSearch(null));
-      return
-    } 
-     if (!value.startsWith("#") ) {
+      return;
+    }
+    if (!value.startsWith("#")) {
       dispatch(tagSearch(null));
-      return
-    } 
-    const matchingTag = allTrends.find((t) => t.toLowerCase() === value.toLowerCase())
+      return;
+    }
+    const matchingTag = allTrends.find(
+      (t) => t.toLowerCase() === value.toLowerCase()
+    );
     dispatch(tagSearch(matchingTag || value));
-  } 
-    
- const hashtagMode = tagValue.startsWith("#"); 
+  };
+
+  const hashtagMode = tagValue.startsWith("#");
 
   return (
     <>
-      <h1 className={styles.home}>
-        {hashtagMode ? "Hashtag" : "Home"}
-      </h1>
+      <h1 className={styles.home}>{hashtagMode ? "Hashtag" : "Home"}</h1>
 
       <div className={styles.tweetContainer}>
-        {!hashtagMode &&
-        <input
-          className={styles.tweetInput}
-          onChange={(e) => {
-<<<<<<< HEAD
-            handleChange(),
-              setTweetLenght(e.target.value.length),
+        {!hashtagMode && (
+          <input
+            className={styles.tweetInput}
+            onChange={(e) => {
+              setTweetLenght(e.target.value.length);
               setTweetContent(e.target.value);
-          }}
-=======
-            setTweetLenght(e.target.value.length);
-            setTweetContent(e.target.value);
-          } }
-          placeholder="What's up?"
-        />}
-        {hashtagMode &&
-        <input
-          className={styles.tweetInput}
-          onChange={handleChange}
->>>>>>> 3a1eafeff9ec822df54a7a74cf3f0100d9e57cba
-          value={tagValue}
-          placeholder={tagValue || "What's up?"}
-        />}
+            }}
+            placeholder="What's up?"
+          />
+        )}
+        {hashtagMode && (
+          <input
+            className={styles.tweetInput}
+            onChange={handleChange}
+            value={tagValue}
+            placeholder={tagValue || "What's up?"}
+          />
+        )}
       </div>
 
       {!hashtagMode && (
@@ -90,7 +85,6 @@ function Tweet(props) {
       )}
     </>
   );
-
 }
 
 export default Tweet;
