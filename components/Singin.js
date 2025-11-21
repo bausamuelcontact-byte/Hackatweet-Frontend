@@ -1,8 +1,9 @@
 import styles from "../styles/Singup.module.css";
 import ReactModal from "react-modal";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { login } from "../reducers/user";
 
 function Singup() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ function Singup() {
 
   const visible = useSelector((state) => state.singin.value);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   //Fetch de connexion user
   function singinBtn() {
@@ -24,6 +26,7 @@ function Singup() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
+          dispatch(login({ username: username, token: data.token }));
           router.push("/Home");
         } else {
           console.log("Calmate hombre");

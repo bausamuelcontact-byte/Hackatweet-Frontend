@@ -24,6 +24,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setTweetDisplay(data);
+        console.log(data);
 
         const allTags = [];
         for (let i = 0; i < data.length; i++) {
@@ -50,6 +51,7 @@ function Home() {
     dispatch(logout());
     router.push("/Login");
   }
+
   return (
     <div className={styles.mainContent}>
       <div className={styles.leftPartContainer}>
@@ -71,6 +73,7 @@ function Home() {
       <div className={styles.tweetContainer}>
         <Tweet />
       </div>
+      <div className={styles.LastTweetsContainer}>{displayTweets}</div>
       <div className={styles.trendsContainer}>
         <Trends />
       </div>
