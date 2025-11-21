@@ -58,6 +58,9 @@ function Singup() {
       }}
     >
       <div>
+        <img src="/logoclean.png" alt="logo" className={styles.logoModal}></img>
+      </div>
+      <div>
         <p>Username</p>
         <input
           type="text"

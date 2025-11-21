@@ -58,3 +58,7 @@
   font-weight: bold;
   cursor: crosshair;
 }
+
+.logoModal {
+  height: 9vh;
+}

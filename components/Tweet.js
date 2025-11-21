@@ -48,14 +48,10 @@ function Tweet(props) {
         <input
           className={styles.tweetInput}
           onChange={(e) => {
-            setTweetLenght(e.target.value.length);
-            setTweetContent(e.target.value);
+            handleChange(),
+              setTweetLenght(e.target.value.length),
+              setTweetContent(e.target.value);
           }}
-          placeholder="What's up?"
-        />
-        <input
-          className={styles.tweetInput}
-          onChange={handleChange}
           value={tagValue}
           placeholder={tagValue || "What's up?"}
         />

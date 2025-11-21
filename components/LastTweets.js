@@ -1,20 +1,27 @@
 import styles from "../styles/LastTweets.module.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 
 function LastTweets(props) {
   const [like, setLike] = useState(0);
+  const [hoursAgo, setHoursAgo] = useState();
   const user = useSelector((state) => state.user.value);
+  console.log(props.date);
+  useEffect(() => {
+    setHoursAgo(
+      Math.floor(
+        (new Date().getTime() - new Date(props.date).getTime()) / 3600000
+      )
+    );
+  }, []);
 
-  const hoursAgo = Math.floor(
-    (new Date().getTime() - new Date(props.date).getTime()) / 3600000
-  );
-
-<<<<<<< HEAD
   function deleteTweets() {
     if (props.token === user.token) {
-      fetch(`http://localhost:3000/users/delete/${props.id}`, {
-        methode: "DELETE",
+      fetch(`http://localhost:3000/tweets/delete/${props.id}`, {
+        method: "DELETE",
       }).then((data) => {
         console.log("suppr", data);
       });
@@ -33,14 +40,17 @@ function LastTweets(props) {
       🗑️
     </span>
   );
-=======
-  let heart = <span onClick={() => {like <1 && setLike(like + 1)}}>🤍</span>;
->>>>>>> 78bd40d15e0dcd5937ee4f10238362962e412a3a
 
+  let letter = props.username.charAt(0);
+  if (hoursAgo === undefined) {
+    setHoursAgo("tkt");
+  }
   return (
     <div className={styles.tweetContainer}>
       <div className={styles.infos}>
-        <img src="./avatar.jpg" alt="avatar" className={styles.avatar}></img>
+        <Stack direction="row" spacing={2}>
+          <Avatar sx={{ bgcolor: deepPurple[500] }}>{letter}</Avatar>
+        </Stack>
         <div className={styles.username}>{props.username}</div>
         <div className={styles.firstname}> @{props.firstname} </div>
         <div className={styles.firstname}>- {hoursAgo} hours ago</div>
