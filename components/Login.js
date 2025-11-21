@@ -2,7 +2,7 @@ import styles from "../styles/Login.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { isVisible } from "../reducers/login";
-import { isVisibleSingin } from "../reducers/login";
+import { isVisibleSingin } from "../reducers/singin";
 import Singup from "./Singup";
 import Singin from "./Singin";
 
@@ -22,7 +22,7 @@ function Login() {
             <button
               className={styles.singup}
               onClick={() => {
-                dispatch(isVisible(visible));
+                dispatch(isVisible());
               }}
             >
               Sign up
@@ -31,7 +31,7 @@ function Login() {
             <button
               className={styles.singin}
               onClick={() => {
-                dispatch(isVisibleSingin(visible));
+                dispatch(isVisibleSingin());
               }}
             >
               Sign in

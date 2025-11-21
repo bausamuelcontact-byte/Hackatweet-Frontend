@@ -3,7 +3,7 @@
   color: white;
   border: 1px solid white;
   border-radius: 10px;
-  height: 40%;
+  height: 40px;
 }
 
 .signup {
@@ -13,7 +13,11 @@
   border: 1px solid black;
   border-radius: 30px;
   height: 3em;
-  width: 15em;
+  width: 14em;
   font-weight: bold;
   cursor: crosshair;
+}
+
+.logoModal {
+  height: 20%;
 }

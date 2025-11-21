@@ -1,15 +1,17 @@
 import styles from "../styles/Singup.module.css";
 import ReactModal from "react-modal";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { login } from "../reducers/user";
 
 function Singup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [verifConnection, setVerifConnection] = useState(false);
 
   const visible = useSelector((state) => state.singin.value);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   //Fetch de connexion user
   function singinBtn() {
@@ -23,9 +25,9 @@ function Singup() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
-          setVerifConnection(true);
-          console.log("Connection Ok", data);
+        if (data.result) {
+          dispatch(login({ username: username, token: data.token }));
+          router.push("/Home");
         } else {
           console.log("Calmate hombre");
         }
@@ -78,7 +80,12 @@ function Singup() {
         ></input>
       </div>
       <div>
-        <button className={styles.signup} onClick={() => singinBtn()}>
+        <button
+          className={styles.signup}
+          onClick={() => {
+            singinBtn();
+          }}
+        >
           Sign in
         </button>
       </div>

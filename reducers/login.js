@@ -8,7 +8,7 @@ export const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    isVisible: (state, action) => {
+    isVisible: (state) => {
       state.value = !state.value;
     },
   },
