@@ -1,5 +1,6 @@
-.tweetContainer {
+.lastTweetContainer {
     height: 10vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     border-bottom: solid 1px;

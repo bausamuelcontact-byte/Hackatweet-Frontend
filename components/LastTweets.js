@@ -7,15 +7,15 @@ function LastTweets(props) {
 
     const hoursAgo =  Math.floor((new Date().getTime() - new Date(props.date).getTime())/3600000);
 
-    let heart = <span onClick={()=>(setLike(like+1))}>🤍</span>
+    let heart = <span onClick={()=>(like <1 && setLike(like+1))}>🤍</span>
 
     return (
-        <div className={styles.tweetContainer}>
+        <div className={styles.lastTweetContainer}>
             <div>
                 <span>@{props.username}  </span> <span>{props.firstname}  </span> <span>- {hoursAgo} hours ago</span>
             </div>
             <div>{props.text}</div>
-            <div>{heart}  <span>{like}</span></div>
+            <div>{heart} <span>{like}</span></div>
         </div>
     );
 }

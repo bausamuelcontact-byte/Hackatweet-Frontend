@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(10, 1fr);
-  min-height: 100vh;
+  height: 100vh;
   padding: 0;
   margin:0;
   background-color: #151d27;
@@ -54,12 +54,13 @@
 }
 
 .lastTweetsContainer {
-  grid-row-start: 3;
+ grid-row-start: 3;
  grid-row-end: 7;
  grid-column-start: 3;
  grid-column-end: 8;
  border-right: solid 1px;
  border-right-color: rgb(194, 189, 189);
+ overflow-y: scroll;
 }
 
 .trendsContainer {
@@ -67,4 +68,5 @@
  grid-row-end: 7;
  grid-column-start: 8;
  grid-column-end: 11;
+ padding-left: 3vw;
 }
