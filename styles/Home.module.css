@@ -1,29 +1,30 @@
 .mainContent {
   display: grid;
+  height: 100vh;
   grid-template-rows: repeat(6, 1fr);
   grid-template-columns: repeat(10, 1fr);
   min-height: 100vh;
   padding: 0;
-  margin:0;
+  margin: 0;
   background-color: #151d27;
   color: white;
 }
 
 .leftPartContainer {
- grid-row-start: 1;
- grid-row-end: 7;
- grid-column-start: 1;
- grid-column-end: 3;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- border-right: solid 1px;
- border-right-color: rgb(194, 189, 189);
+  grid-row-start: 1;
+  grid-row-end: 7;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: solid 1px;
+  border-right-color: rgb(194, 189, 189);
 }
 
 .logoStyle {
   margin-top: 10px;
-  margin-left: 30px
+  margin-left: 30px;
 }
 
 .userLeft {
@@ -31,12 +32,12 @@
   flex-direction: column;
   align-items: left;
   margin-bottom: 50px;
-  margin-left: 30px
+  margin-left: 30px;
 }
 
 .userLeftButton {
   width: 40%;
-  color : rgb(194, 189, 189);
+  color: rgb(194, 189, 189);
   background-color: #151d27;
   border-color: rgb(194, 189, 189);
   border-radius: 8px;
@@ -44,27 +45,27 @@
 
 .tweetContainer {
   grid-row-start: 1;
- grid-row-end: 3;
- grid-column-start: 3;
- grid-column-end: 8;
- border-right: solid 1px;
- border-right-color: rgb(194, 189, 189);
- border-bottom: solid 1px;
- border-bottom-color: rgb(194, 189, 189);
+  grid-row-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 8;
+  border-bottom: solid 1px;
+  border-bottom-color: rgb(194, 189, 189);
 }
 
 .lastTweetsContainer {
   grid-row-start: 3;
- grid-row-end: 7;
- grid-column-start: 3;
- grid-column-end: 8;
- border-right: solid 1px;
- border-right-color: rgb(194, 189, 189);
+  grid-row-end: 7;
+  grid-column-start: 3;
+  grid-column-end: 8;
+  border-right: solid 1px;
+  border-right-color: rgb(194, 189, 189);
+  overflow-y: scroll;
 }
 
 .trendsContainer {
   grid-row-start: 1;
- grid-row-end: 7;
- grid-column-start: 8;
- grid-column-end: 11;
+  grid-row-end: 7;
+  grid-column-start: 8;
+  grid-column-end: 11;
+  border-left: 1px solid rgb(194, 189, 189);
 }

@@ -40,9 +40,17 @@ function Home() {
       });
   }, [dispatch]);
 
-    const displayTweets = tweetDisplay.map((data,i) => {return (<LastTweets
-       key={i} username={data.user.username} firstname={data.user.firstname} text={data.text} date={data.date}/>)
-    }) 
+  const displayTweets = tweetDisplay.map((data, i) => {
+    return (
+      <LastTweets
+        key={i}
+        username={data.user.username}
+        firstname={data.user.firstname}
+        text={data.text}
+        date={data.date}
+      />
+    );
+  });
 
   function logoutBtn() {
     dispatch(logout());
@@ -70,7 +78,7 @@ function Home() {
       <div className={styles.tweetContainer}>
         <Tweet />
       </div>
-      <div className={styles.LastTweetsContainer}>{displayTweets}</div>
+      <div className={styles.lastTweetsContainer}>{displayTweets}</div>
       <div className={styles.trendsContainer}>
         <Trends />
       </div>

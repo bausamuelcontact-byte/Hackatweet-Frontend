@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
-import styles from '../styles/Trends.module.css';
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import styles from "../styles/Trends.module.css";
 
 //Afficher un Hashtag
 const Hashtag = (props) => {
@@ -10,13 +10,13 @@ const Hashtag = (props) => {
       <p>{props.count} tweet(s)</p>
     </div>
   );
-}
+};
 
-function Trends(){
+function Trends() {
   const trends = useSelector((state) => state.trends.value);
-  const [counts, setCounts] = useState({}); 
+  const [counts, setCounts] = useState({});
 
-   useEffect(() => {
+  useEffect(() => {
     const newCounts = {};
     for (let i = 0; i < trends.length; i++) {
       const tag = trends[i];
@@ -33,16 +33,13 @@ function Trends(){
   for (const tag in counts) {
     hashtags.push(<Hashtag key={tag} tag={tag} count={counts[tag]} />);
   }
- console.log(hashtags)
+  console.log(hashtags);
   return (
-    <div >
-		<h2 >Trends</h2>
-		<div className={styles.hashtagsContainer}>
-			{hashtags}
-		</div>
-	</div>
-  )
-
+    <div>
+      <h2>Trends</h2>
+      <div className={styles.hashtagsContainer}>{hashtags}</div>
+    </div>
+  );
 }
 
 export default Trends;
