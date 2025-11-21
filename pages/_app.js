@@ -8,7 +8,7 @@ import singin from "../reducers/singin";
 import user from "../reducers/user";
 
 const store = configureStore({
-  reducer: { login, singin, trends, user },
+  reducer: {login, singin, trends, user},
 });
 
 function App({ Component, pageProps }) {

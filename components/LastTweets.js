@@ -10,6 +10,7 @@ function LastTweets(props) {
     (new Date().getTime() - new Date(props.date).getTime()) / 3600000
   );
 
+<<<<<<< HEAD
   function deleteTweets() {
     if (props.token === user.token) {
       fetch(`http://localhost:3000/users/delete/${props.id}`, {
@@ -32,6 +33,9 @@ function LastTweets(props) {
       🗑️
     </span>
   );
+=======
+  let heart = <span onClick={() => {like <1 && setLike(like + 1)}}>🤍</span>;
+>>>>>>> 78bd40d15e0dcd5937ee4f10238362962e412a3a
 
   return (
     <div className={styles.tweetContainer}>

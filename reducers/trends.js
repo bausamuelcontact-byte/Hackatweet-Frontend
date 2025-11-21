@@ -15,12 +15,9 @@ export const trendsSlice = createSlice({
 
 		tagSearch: (state, action) => {
 		    // Hashtag = action.payload
-			state.selectedTag = action.payload; ;console.log('hashtag', action.payload)
+			state.selectedTag = action.payload;
 		},
-		
-		removeTrend: (state, action) => {
-			
-	    },
+	
 	}	
 });
 
