@@ -31,7 +31,7 @@ function LastTweets(props) {
         deleteTweets();
       }}
     >
-      🗑️
+      :wastebasket:
     </span>
   );
 
@@ -58,3 +58,4 @@ function LastTweets(props) {
 }
 
 export default LastTweets;
+
