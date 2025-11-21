@@ -6,10 +6,13 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAllTrends } from "../reducers/trends";
+import { logout } from "../reducers/user";
+import { useRouter } from "next/router";
 
 function Home() {
   const dispatch = useDispatch();
   const [tweetDisplay, setTweetDisplay] = useState([]);
+  const router = useRouter();
 
   const extractHashtags = (text) => {
     const regex = /#[a-zA-Z0-9_]+/g;
