@@ -9,6 +9,7 @@ function LastTweets(props) {
   const [like, setLike] = useState(0);
   const [hoursAgo, setHoursAgo] = useState();
   const user = useSelector((state) => state.user.value);
+  let letter = "";
   console.log(props.date);
   useEffect(() => {
     setHoursAgo(
@@ -47,11 +48,13 @@ function LastTweets(props) {
         deleteTweets();
       }}
     >
-      :wastebasket:
+      🗑️
     </span>
   );
 
-  let letter = props.username.charAt(0);
+  if (props.username) {
+    letter = props.username.charAt(0);
+  }
   if (hoursAgo === undefined) {
     setHoursAgo("tkt");
   }

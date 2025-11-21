@@ -17,6 +17,7 @@ function Home() {
   const userInfo = useSelector((state) => state.user.value);
   const [tweetDisplay, setTweetDisplay] = useState([]);
   const [refresh, setRefresh] = useState(0);
+  let letter = "";
 
   const refresher = () => setRefresh(refresh + 1);
 
@@ -125,7 +126,9 @@ function Home() {
     router.push("/Login");
   }
 
-  let letter = userInfo.username.charAt(0);
+  if (userInfo.username) {
+    letter = userInfo.username.charAt(0);
+  }
 
   return (
     <div className={styles.mainContent}>
