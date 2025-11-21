@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAllTrends } from "../reducers/trends";
-import {tagSearch} from '../reducers/trends';
+import { tagSearch } from "../reducers/trends";
 import { logout } from "../reducers/user";
 import { useRouter } from "next/router";
 
@@ -49,6 +49,8 @@ function Home() {
         firstname={data.user.firstname}
         text={data.text}
         date={data.date}
+        id={data.id}
+        token={data.user.token}
       />
     );
   });
