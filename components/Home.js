@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAllTrends } from "../reducers/trends";
+import {tagSearch} from '../reducers/trends';
 
 function Home() {
   const dispatch = useDispatch();

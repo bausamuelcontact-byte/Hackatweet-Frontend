@@ -1,0 +1,39 @@
+.title{
+   color: white;
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+   margin: 20px;
+   padding: 10px;
+}
+
+.hashtagsContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #1b232c; 
+    margin: 20px;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hashtagPart{
+  cursor: pointer;
+}
+
+.hashtagPart:hover {
+  background-color: #374151;
+  
+}
+
+.hashtagPart strong {
+  color: white;
+  font-size: 18px;
+}
+
+.tweetsCount{
+   color: #626f7d;
+   margin-top: 5px;
+   font-size: 14px;
+}

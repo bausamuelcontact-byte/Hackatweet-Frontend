@@ -63,7 +63,7 @@
 }
 
 .trendsContainer {
-  grid-row-start: 1;
+ grid-row-start: 1;
  grid-row-end: 7;
  grid-column-start: 8;
  grid-column-end: 11;

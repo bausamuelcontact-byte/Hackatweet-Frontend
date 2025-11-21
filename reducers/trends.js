@@ -2,24 +2,27 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	value: [],
+	selectedTag: null,
 };
 
 export const trendsSlice = createSlice({
 	name: 'trends',
 	initialState,
 	reducers: {
-		addTrend: (state, action) => {
-		    // Hashtag = action.payload
-			state.value.push(action.payload)
-		},
 		setAllTrends: (state, action) => {
           state.value = action.payload; 
         },
+
+		tagSearch: (state, action) => {
+		    // Hashtag = action.payload
+			state.selectedTag = action.payload; ;console.log('hashtag', action.payload)
+		},
+		
 		removeTrend: (state, action) => {
 			
 	    },
 	}	
 });
 
-export const { addTrend, removeTrend, setAllTrends } = trendsSlice.actions;
+export const { tagSearch, removeTrend, setAllTrends } = trendsSlice.actions;
 export default trendsSlice.reducer;
