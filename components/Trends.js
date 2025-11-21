@@ -17,16 +17,13 @@ const Hashtag = (props) => {
       <p className={styles.tweetsCount}>{props.count} Tweet(s)</p>
     </div>
   );
-}
+};
 
- 
-
-function Trends(){
+function Trends() {
   const trends = useSelector((state) => state.trends.value);
-  const [counts, setCounts] = useState({}); 
-  
+  const [counts, setCounts] = useState({});
 
-   useEffect(() => {
+  useEffect(() => {
     const newCounts = {};
     for (let i = 0; i < trends.length; i++) {
       const tag = trends[i];

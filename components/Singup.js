@@ -1,15 +1,19 @@
 import styles from "../styles/Singup.module.css";
 import ReactModal from "react-modal";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../reducers/user";
+import { useRouter } from "next/router";
 
 function Singup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
-  const [verifConnection, setVerifConnection] = useState(false);
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
   const visible = useSelector((state) => state.login.value);
+  const router = useRouter();
 
   //fetch création User
   function singupBtn() {
@@ -24,6 +28,13 @@ function Singup() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (data.result) {
+          dispatch(login({ username: username, token: data.token }));
+          setUsername("");
+          setPassword("");
+          router.push("/Home");
+        }
+
         console.log("newClient ok", data);
       });
   }
@@ -52,7 +63,6 @@ function Singup() {
       }}
     >
       <div>
-        <p>Username</p>
         <input
           type="text"
           placeholder="Username"
@@ -62,8 +72,8 @@ function Singup() {
           }}
         ></input>
       </div>
+
       <div>
-        <p>Firstname</p>
         <input
           type="text"
           placeholder="Firstname"
@@ -74,7 +84,6 @@ function Singup() {
         ></input>
       </div>
       <div>
-        <p>Password</p>
         <input
           type="password"
           placeholder="Password"
@@ -85,7 +94,12 @@ function Singup() {
         ></input>
       </div>
       <div>
-        <button className={styles.signup} onClick={() => singupBtn()}>
+        <button
+          className={styles.signup}
+          onClick={() => {
+            singupBtn();
+          }}
+        >
           Sign up
         </button>
       </div>
