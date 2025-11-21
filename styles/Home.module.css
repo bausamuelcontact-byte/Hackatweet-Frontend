@@ -63,17 +63,9 @@
 }
 
 .trendsContainer {
-<<<<<<< HEAD
- grid-row-start: 1;
- grid-row-end: 7;
- grid-column-start: 8;
- grid-column-end: 11;
-}
-=======
   grid-row-start: 1;
   grid-row-end: 7;
   grid-column-start: 8;
   grid-column-end: 11;
   border-left: 1px solid rgb(194, 189, 189);
 }
->>>>>>> ca964b9dae89ae897123e7a3400830aaf3d4bd1d

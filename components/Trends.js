@@ -7,7 +7,6 @@ import {tagSearch} from '../reducers/trends';
 //Afficher un Hashtag
 const Hashtag = (props) => {
     const dispatch = useDispatch();
-
     const handleHideClick = () => {
            dispatch(tagSearch(props.tag));  
 	}
@@ -41,7 +40,6 @@ function Trends() {
     hashtags.push(<Hashtag key={tag} tag={tag} count={counts[tag]} />);
   }
 
-
   return (
     <div className={styles.trendsContainer}>
 		<h2 className={styles.title}>Trends</h2>
@@ -50,7 +48,6 @@ function Trends() {
 		</div>
 	</div>
   )
-
 }
 
 export default Trends;

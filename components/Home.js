@@ -4,9 +4,8 @@ import LastTweets from "./LastTweets";
 import Trends from "./Trends";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAllTrends } from "../reducers/trends";
-import {tagSearch} from '../reducers/trends';
 import { logout } from "../reducers/user";
 import { useRouter } from "next/router";
 
@@ -14,7 +13,8 @@ function Home() {
   const dispatch = useDispatch();
   const [tweetDisplay, setTweetDisplay] = useState([]);
   const router = useRouter();
-
+  const tag = useSelector((state) => state.trends.selectedTag);
+  
   const extractHashtags = (text) => {
     const regex = /#[a-zA-Z0-9_]+/g;
     return text.match(regex) || [];
@@ -25,7 +25,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setTweetDisplay(data);
-        console.log(data);
+        
         const allTags = [];
         for (let i = 0; i < data.length; i++) {
           const tweet = data[i];
@@ -40,8 +40,8 @@ function Home() {
         console.error("fetch tweets error", err);
       });
   }, [dispatch]);
-
-  const displayTweets = tweetDisplay.map((data, i) => {
+ 
+  let displayTweets = tweetDisplay.map((data, i) => {
     return (
       <LastTweets
         key={i}
@@ -53,11 +53,27 @@ function Home() {
     );
   });
 
+  // Afficher les tweets correspondants au hashtag  
+  if(tag){
+    const selectedTweets = tweetDisplay.filter((tweet) => tweet.text.includes(tag))
+    displayTweets = selectedTweets.map((data, i) => {
+    return (
+      <LastTweets
+        key={i}
+        username={data.user.username}
+        firstname={data.user.firstname}
+        text={data.text}
+        date={data.date}
+      />
+     );
+     });
+   }
+
   function logoutBtn() {
     dispatch(logout());
     router.push("/Login");
   }
-
+  
   return (
     <div className={styles.mainContent}>
       <div className={styles.leftPartContainer}>

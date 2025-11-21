@@ -1,38 +1,49 @@
 import styles from '../styles/Tweet.module.css';
 import { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { tagSearch } from '../reducers/trends';
 
 function Tweet () {
-
+    const dispatch = useDispatch();
     const [tweetLength, setTweetLenght] = useState(0);
     const [tweetPost, setTweetPost] = useState('');
     const tag = useSelector((state) => state.trends.selectedTag);
     const [tagValue, setTagValue] = useState('');
+    const allTrends = useSelector((state) => state.trends.value);
     
-    if(tag){
-        //  useEffect(() => {
-        //    console.log( tagValue);
-        //  }, [tagValue]);
-        return (
-            <>
-            <h1 className={styles.home}>Hashtag</h1>
-            <div className={styles.tweetContainer}>
-            <input className={styles.tweetInput} onChange={(e)=>setTagValue(e.target.value)} />
-        </div>
-        </>
-        )
-    }
+    useEffect(() => {
+      setTagValue(tag || '');
+    }, [tag]);
 
+    const handleChange = (e)=> {
+      const value = e.target.value;
+      setTagValue(value)
+      if(value === ''){
+        dispatch(tagSearch(null));
+      }else if (value.startsWith('#')){
+        const matchingTag = allTrends.find(t => t.toLowerCase() === value.toLowerCase());
+        if(matchingTag) {
+          dispatch(tagSearch(matchingTag));
+        }else{
+          dispatch(tagSearch(value));
+        }
+      }
+    }
+         
     return (
         <>
-        <h1 className={styles.home}>Home</h1>
+        <h1 className={styles.home}>{tagValue.startsWith('#') ? 'Hashtag' : 'Home'}</h1>
         <div className={styles.tweetContainer}>
-            <input className={styles.tweetInput} onChange={(e)=>setTweetLenght(e.target.value.length)} placeholder="What's up?"/>
+            <input className={styles.tweetInput} onChange={handleChange} value={tagValue} placeholder={tagValue || "What's up?"}/>
+           
         </div>
+
+        {!tagValue && (
         <div className={styles.tweetDiv}>
             <div className={styles.caracterCount}><p><span>{tweetLength}</span>/280</p></div>
             <button className={styles.tweetButton}>Tweet</button>
         </div>
+        )}
         </>
     );
 
