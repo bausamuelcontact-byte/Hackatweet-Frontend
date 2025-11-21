@@ -1,4 +1,9 @@
 .tweetContainer {
-    display:flex;
+    height: 10vh;
+    display: flex;
     flex-direction: column;
+    border-bottom: solid 1px;
+    border-bottom-color: rgb(194, 189, 189);
+    justify-content: space-around;
+    padding-left: 3vh;
 }

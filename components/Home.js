@@ -7,7 +7,9 @@ import { useState, useEffect } from "react";
 
 function Home() {
 
-    const [tweetDisplay, setTweetDisplay] = useState([])
+  const [tweetDisplay, setTweetDisplay] = useState([]);
+
+  const [newTweet, setNewTweet] = useState({});
   
     useEffect(() => {
         fetch('http://localhost:3000/tweets')
@@ -20,15 +22,15 @@ function Home() {
                 <div>{tweet.user}<span>{tweet.date}</span></div>
                 <div>{tweet.text}</div>
                 <div>❤️<span>0</span></div>
-            </div>
-        })*/
-    })},[])
+            </div>*/
+        })
+    },[])
 
     
     console.log(tweetDisplay)
 
     const displayTweets = tweetDisplay.map((data,i) => {return (<LastTweets
-       key={i} user={data.user} text={data.text} date={data.date}/>)
+       key={i} username={data.user.username} firstname={data.user.firstname} text={data.text} date={data.date}/>)
     }) 
 
   return (
