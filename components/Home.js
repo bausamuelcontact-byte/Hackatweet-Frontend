@@ -49,7 +49,8 @@ function Home() {
   const dispatch = useDispatch();
   const [tweetDisplay, setTweetDisplay] = useState([]);
   const router = useRouter();
-
+  const tag = useSelector((state) => state.trends.selectedTag);
+  
   const extractHashtags = (text) => {
     const regex = /#[a-zA-Z0-9_]+/g;
     return text.match(regex) || [];
@@ -60,7 +61,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setTweetDisplay(data);
-        console.log(data);
+        
         const allTags = [];
         for (let i = 0; i < data.length; i++) {
           const tweet = data[i];
@@ -75,17 +76,42 @@ function Home() {
         console.error("fetch tweets error", err); 
       });
   /*}, [dispatch]);*/
-  }, [tweetDisplay]);
+  }, [tweetDisplay, dispatch]);
+  
+ 
+  let displayTweets = tweetDisplay.map((data, i) => {
+    return (
+      <LastTweets
+        key={i}
+        username={data.user.username}
+        firstname={data.user.firstname}
+        text={data.text}
+        date={data.date}
+      />
+    );
+  });
 
-    const displayTweets = tweetDisplay.map((data,i) => {return (<LastTweets
-       key={i} username={data.user.username} firstname={data.user.firstname} text={data.text} date={data.date}/>)
-    }) 
+  // Afficher les tweets correspondants au hashtag  
+  if(tag){
+    const selectedTweets = tweetDisplay.filter((tweet) => tweet.text.includes(tag))
+    displayTweets = selectedTweets.map((data, i) => {
+    return (
+      <LastTweets
+        key={i}
+        username={data.user.username}
+        firstname={data.user.firstname}
+        text={data.text}
+        date={data.date}
+      />
+     );
+     });
+   }
 
   function logoutBtn() {
     dispatch(logout());
     router.push("/Login");
   }
-
+  
   return (
     <div className={styles.mainContent}>
       <div className={styles.leftPartContainer}>
